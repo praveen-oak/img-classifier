@@ -1,0 +1,54 @@
+import torch
+import pandas
+import os
+from skimage import io
+import numpy
+from torch.utils.data import Dataset, DataLoader
+from torchvision import transforms
+from transformers import Resize, ToTensor
+
+
+def load_data(self, batch_size, workers, csv_file, root_dir, image_dim=32):
+	image_transformer =transforms.Compose([Resize(image_dim, image_dim),ToTensor()])
+	dataset = ImageDataSet(csv_file, root_dir, image_transformer)
+
+	image_data_loader = DataLoader(dataset, batch_size=batch_size,
+                        shuffle=True, num_workers=workers)
+
+class ImageDataSet(DataSet):
+	def __init__(self, csv_file, root_dir, transform=None):
+        self.image_data = pandas.read_csv(csv_file)	#csv file with file location and labels
+        self.root_dir = root_dir	#root dir of image files
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.image_data)
+
+    def __getitem__(self, index):
+        image_location = os.path.join(self.root_dir,
+                                self.image_data.iloc[index, 0])
+
+        image_label_string_list = self.image_data.iloc[index, 1].split(" ")
+        image_label_tensor = self.get_image_label_tensor(image_label_string_list)
+
+        image_np_array = io.imread(image_location)
+        if self.transform:
+        	image_np_array = self.transform(image_np_array)
+
+        image_tensor = torch.tensor(image_array)
+        sample = {'image_tensor': image_tensor, 'image_label_tensor' : image_label_tensor}
+
+        return sample
+
+
+
+    def get_image_label_tensor(self, image_label_string_list):
+    	image_label_list = [0 for x in range(17)]
+        labels = list(map(int, image_label_string_list))
+
+        for label in labels:
+        	image_label_list[label] = 1
+
+        image_label_tensor = torch.tensor(image_label_list)
+        return image_label_tensor
+
