@@ -11,8 +11,10 @@ def driver():
     image_data_loader = load_data(250, 1, "train.csv", "/scratch/gd66/spring2019/lab2/kaggleamazon/", 32)
 
     for i_batch, sample_batched in enumerate(image_data_loader):
-        print(i_batch, sample_batched['image_tensor'].size(),
-          sample_batched['image_label_tensor'].size())
+        # print(i_batch, sample_batched['image_tensor'].size(),
+          # sample_batched['image_label_tensor'].size())
+        print(type(sample_batched['image_tensor']))
+
 
 
 
@@ -45,7 +47,7 @@ class ImageDataSet(Dataset):
         if self.transform:
             image_np_array = self.transform(image_np_array)
 
-        image_tensor = torch.tensor(image_np_array)
+        image_tensor = torch.tensor(image_np_array).float()
         sample = {'image_tensor': image_tensor, 'image_label_tensor' : image_label_tensor}
 
         return sample
@@ -60,5 +62,5 @@ class ImageDataSet(Dataset):
             image_label_list[label] = 1
 
         image_label_tensor = torch.tensor(image_label_list)
-        return image_label_tensor
+        return image_label_tensor.float()
 
