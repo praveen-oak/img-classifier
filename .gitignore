@@ -2,3 +2,4 @@ sftp-config.json
 __pycache__/
 cifar10_tutorial.py
 neural_networks_tutorial.py
+.DS_Store

@@ -43,7 +43,7 @@ class NeuralNet(nn.Module):
 		#fc1 then run relu
 		input_tensor = functional.relu(self.fc1(input_tensor))
 		#fc2 then run sigmoid
-		input_tensor = functional.sigmoid(self.fc2(input_tensor))
+		input_tensor = torch.sigmoid(self.fc2(input_tensor))
 		return input_tensor
 
 
