@@ -7,17 +7,6 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from transformers import Resize, ToTensor
 
-def driver():
-    image_data_loader = load_data(250, 1, "train.csv", "/scratch/gd66/spring2019/lab2/kaggleamazon/", 32)
-
-    for i_batch, sample_batched in enumerate(image_data_loader):
-        # print(i_batch, sample_batched['image_tensor'].size(),
-          # sample_batched['image_label_tensor'].size())
-        print(type(sample_batched['image_tensor']))
-
-
-
-
 def load_data(batch_size, workers, csv_file, root_dir, image_dim=32):
     image_transformer =transforms.Compose([Resize(image_dim, image_dim),ToTensor()])
     dataset = ImageDataSet(csv_file, root_dir, image_transformer)
@@ -51,8 +40,6 @@ class ImageDataSet(Dataset):
         sample = {'image_tensor': image_tensor, 'image_label_tensor' : image_label_tensor}
 
         return sample
-
-
 
     def get_image_label_tensor(self, image_label_string_list):
         image_label_list = [0 for x in range(17)]

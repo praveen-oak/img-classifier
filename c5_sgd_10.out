@@ -1,0 +1,10 @@
+Running on device : True
+-----------------Training done------------------------
+-----------------Printing aggregate stats------------------------
+Aggregated time for data loading = 50.077828741952544
+Aggregated time for mini-batch computation = 51.36023506897618
+Aggregated time for each epoch = 269.90518390899524
+-----------------Printing average stats------------------------
+Average time per mini batch for data loading = 0.08
+Average time per minibatch for computation = 0.09
+Average time for each epoch = 53.98

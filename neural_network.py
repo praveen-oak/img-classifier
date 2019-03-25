@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as functional
 
-
 class NeuralNet(nn.Module):
 	def __init__(self):
 		super(NeuralNet, self).__init__()
@@ -27,9 +26,6 @@ class NeuralNet(nn.Module):
 		input_tensor = self.fully_connected(input_tensor)
 		return input_tensor
 
-
-
-
 	def num_flat_features(self, x):
 		size = x.size()[1:]  # all dimensions except the batch dimension
 		num_features = 1
@@ -45,8 +41,6 @@ class NeuralNet(nn.Module):
 		#fc2 then run sigmoid
 		input_tensor = torch.sigmoid(self.fc2(input_tensor))
 		return input_tensor
-
-
 
 	def first_inception(self, input_tensor):
 		output_1 = self.inception1_conv1(input_tensor)

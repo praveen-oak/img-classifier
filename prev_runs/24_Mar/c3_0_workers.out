@@ -1,0 +1,10 @@
+Running on the CPU
+-----------------Training done------------------------
+-----------------Printing aggregate stats------------------------
+Aggregated time for data loading = 762.0045159681467
+Aggregated time for mini-batch computation = 794.2539562609745
+Aggregated time for each epoch = 4034.1527210780187
+-----------------Printing average stats------------------------
+Average time per mini batch for data loading = 1.27
+Average time per minibatch for computation = 1.32
+Average time for each epoch = 806.83
