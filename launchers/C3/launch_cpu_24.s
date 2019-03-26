@@ -9,4 +9,4 @@
 #SBATCH --partition=c32_41
 #SBATCH --output=c3_24.out
 
-python -W ignore main.py -o SGD -d /scratch/gd66/spring2019/lab2/kaggleamazon/ -w 24
+python -W ignore -m cProfile -o c3_20.prof main.py -o SGD -d /scratch/gd66/spring2019/lab2/kaggleamazon/ -w 24

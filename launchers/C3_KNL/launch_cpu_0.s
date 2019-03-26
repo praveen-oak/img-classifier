@@ -5,9 +5,9 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=10GB
-#SBATCH --time=07:00:00
-#SBATCH --partition=c32_41
-#SBATCH --output=c3_0.out
+#SBATCH --time=05:00:00
+#SBATCH --partition=knl
+#SBATCH --output=c3_0_knl.out
 
 python -W ignore main.py -o SGD -d /scratch/gd66/spring2019/lab2/kaggleamazon/ -w 0
 

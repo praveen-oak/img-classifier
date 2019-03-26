@@ -5,6 +5,8 @@ import torch.nn as nn
 import time
 
 
+#method takes in the command line parameters, creates the data loader and the neural network
+#and then runs the data on the neural network, collects the required stats and prints them to file
 def run_classifier(folder_path, optimizer_string, workers, device, calculate_precision=False):
 	data_loader = load_data(250, workers, "train.csv",
 							 folder_path, 32)
@@ -71,7 +73,16 @@ def run_classifier(folder_path, optimizer_string, workers, device, calculate_pre
 			for i, data in enumerate(data_loader, 0):
 				print( "Epoch = {}, batch = {}, Loss = {}, Precision@1 {}, Precision@3 {}. \n"
 					.format(epoch, i, loss_outer_array[epoch][i], precision1_outer_array[epoch][i], precision3_outer_array[epoch][i]))
-	
+		
+		average_loss = sum(sum(x) for x in loss_outer_array)/600.0
+		average_precision_1 = sum(sum(x) for x in precision1_outer_array)/600.0
+		average_precision_3 = sum(sum(x) for x in precision3_outer_array)/600.0
+
+		print("Average loss over 5 epoch = {}".format(average_loss))
+		print("Average precision@1 over 5 epoch = {}".format(average_precision_1))
+		print("Average precision@3 over 5 epoch = {}".format(average_precision_3))
+
+
 
 	print("-----------------Printing aggregate stats------------------------")
 	print("Aggregated time for data loading = {}".format(data_load_time))
@@ -84,6 +95,7 @@ def run_classifier(folder_path, optimizer_string, workers, device, calculate_pre
 	print("Average time per mini batch for data loading = {}".format(round(data_load_time/600.0, 2)))
 	print("Average time per minibatch for computation = {}".format(round(compute_time/600.0, 2)))
 	print("Average time for each epoch = {}".format(round(epoch_time/5.0, 2)))
+
 
 
 

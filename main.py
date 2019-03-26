@@ -33,7 +33,7 @@ def main():
 		device = torch.device("cpu")
 		print("Running on the CPU")
 
-	if workers == 1:
+	if args['precision'] != None:
 		run_classifier(folder_path, optimizer_string, workers, device, calculate_precision=True)
 	else:
 		run_classifier(folder_path, optimizer_string, workers, device)
