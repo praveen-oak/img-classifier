@@ -1,14 +1,5 @@
 This file contains all details of the structure of the codebase, how to run the classifier, and how to look at the results.
 
-PLEASE NOTE : I have created multiple files instead of one big lab2.py file to improve code readibility.
-Although it was mentioned in the assignment not to do this, subsequently the professor allowed multiple file
-format in this piazza post
-
-https://piazza.com/class/jr0t1qlu4wj3cj?cid=73
-
-
-
-
 1. Running the code
 There is a script called runner.sh in the main folder.
 First make the script executable using the command:
@@ -20,54 +11,9 @@ Then you just run the script
 	./runner.sh
 
 This should launch 11 runs on the HPC cluster.
-You can check if the jobs have been launched using the command
-squeue | grep <<your username here>>
-
-Each job is named as:
-	questionnumber_workers/optimizer
-
-For eg:
-If the job is running a task for C3, testing the code for 12 workers,
-The job name would be c3_12
-
-If the job is running a task for C3, testing the code for adagrad,
-The job name would be c5_grad
-
 
 2. Looking at the results
 	The result files will be in the same main folder.
-	All results files have the following name format
-
-	questionnumber_workers/optimizer.out
-
-	For example,
-	If the result file is for question 3 with 16 workers, the generated result file will be named as:
-
-		c3_12.out
-
-	If the result file is for question 5 with adam optimizer, the generated result file will be named as:
-
-		c5_adam.out
-
-
-	After all the tasks have been finished, the following result files will be generated:
-		
-		c2_1.out -- Neural network with 1 worker, all precision numbers printed
-
-		c3_0.out -- Neural network with 0 workers
-		c3_4.out
-		c3_8.out
-		c3_16.out
-		c3_20.out
-		c3_24.out
-		c3_28.out -- Neural network with 28 workers
-
-		c5_adam.out -- Neural network run with adam optimizer
-		c5_delta.out-- Neural network run with adadelta optimizer 
-		c5_grad.out-- Neural network run with adagrad optimizer
-		c5_sgd.out-- Neural network run with sgd optimizer
-		c5_sgdn.out-- Neural network run with sgd nesterov optimizer
-
 
 3. Result contents:
 
@@ -78,7 +24,7 @@ The job name would be c5_grad
 
 	<<Running on CPU/Device>> -- Check this to make sure that the algo is running on the device requested
 
-	If precision mode is turned on(For c2 and c5 parts)
+	If precision mode is turned on,
 	Next 600 lines will be as follows
 	<<Epoch = 0, batch = 29, Loss = 0.43, Precision@1 0.9, Precision@3 0.63. >>
 		Each line reporting the batch epoch along with the corresponding loss and precision numbers
