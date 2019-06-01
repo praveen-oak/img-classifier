@@ -4,7 +4,7 @@ This file contains all details of the structure of the codebase, how to run the 
 There is a script called runner.sh in the main folder.
 First make the script executable using the command:
 
-	chmod 777 ./runner.sh
+	chmod +x ./runner.sh
 
 Then you just run the script
 
@@ -50,9 +50,5 @@ This should launch 11 runs on the HPC cluster.
 	2. image_dataset.py - Responsible for building the data loader as well as manipulating the image and label to a tensor and cropping and resizing the image as required
 	3. neural_network.py - Builds the entire CNN as mentioned in the assignment requirements
 	4. image_dataset.py - Creates the dataloader, the neural net and the trains it. Collectes the time and accuracy information and prints it out to the file.
-
-	Other than the code there are a few helper file and folders to help with creating the running the slurm jobs
-	1. ./runner.sh - Script to run all the jobs
-	2. launcher folder - Contains the sbatch profile files for each question.
 
 
